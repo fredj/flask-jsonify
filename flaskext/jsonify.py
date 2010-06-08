@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
-from functools import wraps
+try:
+    from json import dumps
+except ImportError:
+    from simplejson import dumps
+
 from flask import Response
 
-from json import dumps
-
 def jsonify(f):
-    @wraps(f)
-    def decorated_function(*args, **kwargs):
+    def inner(*args, **kwargs):
         return Response(dumps(f(*args, **kwargs)), mimetype='application/json')
-    return decorated_function
+    return inner
 
