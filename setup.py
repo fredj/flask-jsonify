@@ -7,7 +7,7 @@ Description goes here...
 Links
 `````
 
-* `documentation <http://packages.python.org/flask-jsonify>`_
+* `documentation <http://github.com/fredj/flask-jsonify/raw/master/README>`_
 
 """
 from setuptools import setup
@@ -16,7 +16,7 @@ from setuptools import setup
 setup(
     name='flask-jsonify',
     version='0.1',
-    url='<enter URL here>',
+    url='http://github.com/fredj/flask-jsonify',
     license='BSD',
     author='Frederic Junod',
     author_email='frederic.junod@gmail.com',

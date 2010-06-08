@@ -1,3 +1,13 @@
 flask-jsonify
 
-Description goes here
+A Flask decorator to return json objects.
+
+
+Usage:
+
+    from flaskext.jsonify import jsonify
+
+    @app.route('/')
+    @jsonify
+    def index():
+        return {'foo': 'bar', 'baz': [1,2,3]}

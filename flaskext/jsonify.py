@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
-"""
-    flaskext.jsonify
-    ~~~~~~~~~~~~~~~~
+from functools import wraps
+from flask import Response
 
-    Description of the module goes here...
+from json import dumps
 
-    :copyright: (c) 2010 by Frederic Junod.
-    :license: BSD, see LICENSE for more details.
-"""
+def jsonify(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        return Response(dumps(f(*args, **kwargs)), mimetype='application/json')
+    return decorated_function
+
