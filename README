@@ -2,6 +2,9 @@ flask-jsonify
 
 A Flask decorator to return json objects.
 
+Install:
+
+    pip install -e 'git+http://github.com/fredj/flask-jsonify.git#egg=flask-jsonify'
 
 Usage:
 
