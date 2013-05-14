@@ -5,11 +5,17 @@ except ImportError:
     from simplejson import dumps
 
 from flask import Response
-from functools import wraps
+from functools import wraps, partial
 
-def jsonify(f):
-    @wraps(f)
+def jsonify(method=None, cls=None):
+
+    if method is None:
+        return partial(jsonify, cls=cls)
+
+    @wraps(method)
     def inner(*args, **kwargs):
-        return Response(dumps(f(*args, **kwargs)), mimetype='application/json')
+        retval = method(*args, **kwargs)
+        if cls is not None:
+            return Response(dumps(retval, cls=cls), mimetype='application/json')
+        return Response(dumps(retval), mimetype='application/json')
     return inner
-
