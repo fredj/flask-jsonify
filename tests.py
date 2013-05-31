@@ -1,7 +1,7 @@
 import unittest
-from flaskext.jsonify import jsonify
+from flaskext.jsonify import jsonify, JSONStatusResponse
 from datetime import datetime
-from json import JSONEncoder
+from json import JSONEncoder, dumps
 
 
 class CustomEncoder(JSONEncoder):
@@ -79,6 +79,16 @@ class JsonifyTests(unittest.TestCase):
 
     def test_hard_obj_with_decorator(self):
         self.hard_obj_with_custom_class()
+
+    # Returning an error response that preserves the error code
+    @jsonify
+    def error_code_function(self):
+        return JSONStatusResponse(404, {'message': 'error'})
+
+    def test_error_code(self):
+        response = self.error_code_function()
+        self.assertTrue(response.status_code == 404)
+        self.assertTrue(response.data == dumps({"message": "error"}))
 
 if __name__ == '__main__':
     unittest.main()
