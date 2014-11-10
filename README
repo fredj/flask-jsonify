@@ -1,3 +1,6 @@
+**the code is no longer maintained !**
+
+
 flask-jsonify
 
 A Flask decorator to return json objects.
